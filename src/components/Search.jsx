@@ -19,19 +19,14 @@ const Search = () => {
       setResult(data.query.search);
     };
 
-    let timeoutId;
-
     if (term && !result.length) {
       if (term) fetchData();
     } else {
-      timeoutId = setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         if (term) fetchData();
       }, 1000);
-      // console.log("useEffect");
 
       return () => {
-        //   console.log("useEffect => return");
-
         clearTimeout(timeoutId);
       };
     }
@@ -68,7 +63,6 @@ const Search = () => {
   });
 
   return (
-    // console.log("component render"),
     <div>
       <div className="ui form">
         <div className="field">
