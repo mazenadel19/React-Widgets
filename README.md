@@ -10,6 +10,6 @@
 
 ## 🧰 Tools I've used
 
-- 
--
+- Axios
+- Wikipedia API
 
