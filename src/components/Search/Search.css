@@ -1,0 +1,12 @@
+.search #article {
+	display: flex;
+	flex-direction: row-reverse;
+	background-color: whitesmoke;
+}
+
+.search #buttonWrapper {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
