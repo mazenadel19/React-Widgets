@@ -1,0 +1,21 @@
+.navbar {
+	text-align: center;
+	box-shadow: 0px 4px 15px 2px rgb(218, 218, 218);
+	margin-bottom: 50px;
+}
+
+.navbar ul li {
+	list-style: none;
+	display: inline-block;
+	padding: 10px;
+	cursor: pointer;
+	color: royalblue;
+}
+
+.navbar ul li:hover {
+	text-decoration: underline;
+}
+
+.navbar .active {
+	text-decoration: underline;
+}

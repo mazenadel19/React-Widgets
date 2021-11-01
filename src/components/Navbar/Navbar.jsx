@@ -1,8 +1,9 @@
+import './Navbar.css'
 const NavbarArray = ['Accordion', 'Search', 'Dropdown', 'Translate']
 
 const Navbar = ({ active, setActive }) => {
 	return (
-		<nav className='header-nav'>
+		<nav className='navbar'>
 			<ul>
 				{NavbarArray.map((item, index) => (
 					<li
