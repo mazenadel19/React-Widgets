@@ -1,5 +1,5 @@
 import './Navbar.css'
-const NavbarArray = ['Accordion', 'Search', 'Dropdown', 'Translate']
+const NavbarArray = ['Accordion', 'Wikipedia Search', 'Dropdown', 'Translate']
 
 const Navbar = ({ active, setActive }) => {
 	return (

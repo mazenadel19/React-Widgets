@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import './App.css'
 import Accordion from './components/Accordion/Accordion'
-import Dropdown from './components/Dropdown/Dropdown'
 import Navbar from './components/Navbar/Navbar'
-import Search from './components/Search/Search'
-import Translate from './components/Translate/Translate'
+const Dropdown = React.lazy(() => import('./components/Dropdown/Dropdown'))
+const Search = React.lazy(() => import('./components/Search/Search'))
+const Translate = React.lazy(() => import('./components/Translate/Translate'))
 
 const items = [
 	{
@@ -26,10 +26,12 @@ function App() {
 	return (
 		<div className='ui container App'>
 			<Navbar active={active} setActive={setActive} />
-			{active === 'Accordion' && <Accordion items={items} />}
-			{active === 'Search' && <Search />}
-			{active === 'Dropdown' && <Dropdown />}
-			{active === 'Translate' && <Translate />}
+			<Suspense fallback={<div>Loading...</div>}>
+				{active === 'Accordion' && <Accordion items={items} />}
+				{active === 'Wikipedia Search' && <Search />}
+				{active === 'Dropdown' && <Dropdown />}
+				{active === 'Translate' && <Translate />}
+			</Suspense>
 		</div>
 	)
 }

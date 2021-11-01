@@ -3,25 +3,25 @@ import React, { useEffect, useState } from 'react'
 import './Search.css'
 
 const Search = () => {
-	const [term, setTerm] = useState('ReactJS')
+	const [term, setTerm] = useState('')
 	const [result, setResult] = useState([])
 	const [debouncedTerm, setDebouncedTerm] = useState(term)
 
 	useEffect(() => {
 		const timerId = setTimeout(() => {
-			console.log('setDebounced')
+			// console.log('setDebounced')
 			setDebouncedTerm(term)
 		}, 1000)
 
 		return () => {
-			console.log('cleartimeout')
+			// console.log('cleartimeout')
 			clearTimeout(timerId)
 		}
 	}, [term])
 
 	useEffect(() => {
 		const fetchData = async () => {
-			console.log('axios request')
+			// console.log('axios request')
 			const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
 				params: {
 					action: 'query',
@@ -35,7 +35,7 @@ const Search = () => {
 		}
 
 		if (debouncedTerm) {
-			console.log('fetch data')
+			// console.log('fetch data')
 			fetchData()
 		} else {
 			setResult([])
@@ -44,7 +44,7 @@ const Search = () => {
 
 	const renderList = result.map(item => {
 		return (
-			console.log('renderList'),
+			// console.log('renderList'),
 			(
 				<article className='item' id='article' key={item.pageid}>
 					<div className='right floated content' id='buttonWrapper'>
