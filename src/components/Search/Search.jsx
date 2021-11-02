@@ -1,13 +1,20 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Search.css'
 
 const Search = () => {
 	const [term, setTerm] = useState('')
 	const [result, setResult] = useState([])
 	const [debouncedTerm, setDebouncedTerm] = useState(term)
+	console.log('1')
 
+	const isFirstRun = useRef(true)
 	useEffect(() => {
+		if (isFirstRun.current) {
+			isFirstRun.current = false
+			return
+		}
+		console.log('2')
 		const timerId = setTimeout(() => {
 			// console.log('setDebounced')
 			setDebouncedTerm(term)
@@ -20,6 +27,7 @@ const Search = () => {
 	}, [term])
 
 	useEffect(() => {
+		console.log('3')
 		const fetchData = async () => {
 			// console.log('axios request')
 			const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
@@ -33,6 +41,7 @@ const Search = () => {
 			})
 			setResult(data.query.search)
 		}
+		console.log('!!debouncedTerm', !!debouncedTerm)
 
 		if (debouncedTerm) {
 			// console.log('fetch data')
@@ -45,44 +54,40 @@ const Search = () => {
 	const renderList = result.map(item => {
 		return (
 			// console.log('renderList'),
-			(
-				<article className='item' id='article' key={item.pageid}>
-					<div className='right floated content' id='buttonWrapper'>
-						<a
-							className='ui button'
-							href={`https://en.wikipedia.org?curid=${item.pageid}`}>
-							Open This Article
-						</a>
-					</div>
-					<div className='content' style={{ flex: 3 }}>
-						<div className='header'>{item.title}</div>
-						<span dangerouslySetInnerHTML={{ __html: item.snippet }}></span>
-					</div>
-				</article>
-			)
+			<article className='item' id='article' key={item.pageid}>
+				<div className='right floated content' id='buttonWrapper'>
+					<a
+						className='ui button'
+						href={`https://en.wikipedia.org?curid=${item.pageid}`}>
+						Open This Article
+					</a>
+				</div>
+				<div className='content' style={{ flex: 3 }}>
+					<div className='header'>{item.title}</div>
+					<span dangerouslySetInnerHTML={{ __html: item.snippet }}></span>
+				</div>
+			</article>
 		)
 	})
 
 	return (
-		console.log('function return'),
-		(
-			<div className='search'>
-				<div className='ui form'>
-					<div className='field'>
-						<label htmlFor='search'>Enter Search Label</label>
-						<input
-							id='search'
-							type='text'
-							placeholder='type something here'
-							className='input'
-							value={term}
-							onChange={e => setTerm(e.target.value)}
-						/>
-					</div>
+		// console.log('function return'),
+		<div className='search'>
+			<div className='ui form'>
+				<div className='field'>
+					<label htmlFor='search'>Enter Search Label</label>
+					<input
+						id='search'
+						type='text'
+						placeholder='type something here'
+						className='input'
+						value={term}
+						onChange={e => setTerm(e.target.value)}
+					/>
 				</div>
-				<div className='ui celled list'>{renderList}</div>
 			</div>
-		)
+			<div className='ui celled list'>{renderList}</div>
+		</div>
 	)
 }
 

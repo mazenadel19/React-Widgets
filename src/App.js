@@ -21,15 +21,36 @@ const items = [
 	},
 ]
 
+const options = [
+	{ label: 'Red', value: 'red' },
+	{ label: 'Orange', value: 'orange' },
+	{ label: 'Yellow', value: 'yellow' },
+	{ label: 'Green', value: 'green' },
+	{ label: 'Blue', value: 'blue' },
+	{ label: 'Indigo', value: 'indigo' },
+	{ label: 'Violet', value: 'violet' },
+	{ label: 'Black', value: 'black' },
+]
+
 function App() {
-	const [active, setActive] = useState('Accordion')
+	const [active, setActive] = useState('Dropdown')
+	const [selected, setSelected] = useState(options[0])
+
+
+
 	return (
-		<div className='ui container App'>
+		<div className='ui container App' >
 			<Navbar active={active} setActive={setActive} />
 			<Suspense fallback={<div>Loading...</div>}>
 				{active === 'Accordion' && <Accordion items={items} />}
 				{active === 'Wikipedia Search' && <Search />}
-				{active === 'Dropdown' && <Dropdown />}
+				{active === 'Dropdown' && (
+					<Dropdown
+						options={options}
+						selected={selected}
+						setSelected={setSelected}
+					/>
+				)}
 				{active === 'Translate' && <Translate />}
 			</Suspense>
 		</div>
