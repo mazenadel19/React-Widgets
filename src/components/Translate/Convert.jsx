@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 
 const Convert = ({ language, text }) => {
 	const [translatedText, setTranslatedText] = useState('')
-	const [debouncedTerm, setDebouncedTerm] = useState('')
+	const [debouncedTerm, setDebouncedTerm] = useState(text)
 
 	useEffect(() => {
 		const timerId = setTimeout(() => {
@@ -13,7 +13,9 @@ const Convert = ({ language, text }) => {
 		return () => {
 			clearTimeout(timerId)
 		}
-	}, [language, text])
+	}, [text])
+
+
 	const isFirst = useRef(true)
 	useEffect(() => {
 		if (isFirst.current) {
