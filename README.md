@@ -1,4 +1,4 @@
-# React Videos
+# React Widgets
 
 ## 🚀 Getting Started
 
@@ -12,4 +12,7 @@
 
 - Axios
 - Wikipedia API
+- Google Translate API 
+
+### NB: you will be able to use the translate widget on localhost port 3000 only
 

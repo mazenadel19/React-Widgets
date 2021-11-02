@@ -36,19 +36,19 @@ function App() {
 	const [active, setActive] = useState('Translate')
 	const [selected, setSelected] = useState(options[0])
 
-
-
 	return (
-		<div className='ui container App' >
+		<div className='ui container App'>
 			<Navbar active={active} setActive={setActive} />
 			<Suspense fallback={<div>Loading...</div>}>
 				{active === 'Accordion' && <Accordion items={items} />}
 				{active === 'Wikipedia Search' && <Search />}
 				{active === 'Dropdown' && (
 					<Dropdown
+						label='Select a color'
 						options={options}
 						selected={selected}
-						setSelected={setSelected}
+						onSelectedChange={setSelected}
+						coloringWidget
 					/>
 				)}
 				{active === 'Translate' && <Translate />}
