@@ -6,7 +6,7 @@ const Search = () => {
 	const [term, setTerm] = useState('')
 	const [result, setResult] = useState([])
 	const [debouncedTerm, setDebouncedTerm] = useState(term)
-	console.log('1')
+	// console.log('1')
 
 	const isFirstRun = useRef(true)
 	useEffect(() => {
@@ -14,7 +14,7 @@ const Search = () => {
 			isFirstRun.current = false
 			return
 		}
-		console.log('2')
+		// console.log('2')
 		const timerId = setTimeout(() => {
 			// console.log('setDebounced')
 			setDebouncedTerm(term)
@@ -27,7 +27,7 @@ const Search = () => {
 	}, [term])
 
 	useEffect(() => {
-		console.log('3')
+		// console.log('3')
 		const fetchData = async () => {
 			// console.log('axios request')
 			const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
@@ -41,7 +41,7 @@ const Search = () => {
 			})
 			setResult(data.query.search)
 		}
-		console.log('!!debouncedTerm', !!debouncedTerm)
+		// console.log('!!debouncedTerm', !!debouncedTerm)
 
 		if (debouncedTerm) {
 			// console.log('fetch data')

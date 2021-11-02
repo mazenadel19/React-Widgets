@@ -33,7 +33,7 @@ const options = [
 ]
 
 function App() {
-	const [active, setActive] = useState('Dropdown')
+	const [active, setActive] = useState('Translate')
 	const [selected, setSelected] = useState(options[0])
 
 
