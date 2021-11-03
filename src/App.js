@@ -1,6 +1,7 @@
 import React, { Suspense, useState } from 'react'
 import './App.css'
 import Accordion from './components/Accordion/Accordion'
+import Route from './components/Route/Route'
 const Dropdown = React.lazy(() => import('./components/Dropdown/Dropdown'))
 const Search = React.lazy(() => import('./components/Search/Search'))
 const Translate = React.lazy(() => import('./components/Translate/Translate'))
@@ -31,11 +32,11 @@ const options = [
 	{ label: 'Black', value: 'black' },
 ]
 
-const showComponent = (route, component) => {
-	if (window.location.pathname === route) {
-		return component
-	}
-}
+// const showComponent = (route, component) => {
+// 	if (window.location.pathname === route) {
+// 		return component
+// 	}
+// }
 
 function App() {
 	const [selected, setSelected] = useState(options[0])
@@ -43,19 +44,24 @@ function App() {
 	return (
 		<div className='ui container App'>
 			<Suspense fallback={<div>Loading...</div>}>
-				{showComponent('/', <Accordion items={items} />)}
-				{showComponent(
-					'/list',
+				<Route path='/'>
+					<Accordion items={items} />
+				</Route>
+				<Route path='/list'>
 					<Dropdown
 						label='Select a color'
 						options={options}
 						selected={selected}
 						onSelectedChange={setSelected}
 						coloringWidget
-					/>,
-				)}
-				{showComponent('/search', <Search />)}
-				{showComponent('/translate', <Translate />)}
+					/>
+				</Route>
+				<Route path='/search'>
+					<Search />
+				</Route>
+				<Route path='/translate'>
+					<Translate />
+				</Route>
 			</Suspense>
 		</div>
 	)
