@@ -31,35 +31,9 @@ const options = [
 	{ label: 'Black', value: 'black' },
 ]
 
-const showAccodrion = () => {
-	if (window.location.pathname === '/') {
-		return <Accordion items={items} />
-	}
-}
-
-const showSearch = () => {
-	if (window.location.pathname === '/search') {
-		return <Search />
-	}
-}
-
-const showDropdown = (selected, setSelected) => {
-	if (window.location.pathname === '/list') {
-		return (
-			<Dropdown
-				label='Select a color'
-				options={options}
-				selected={selected}
-				onSelectedChange={setSelected}
-				coloringWidget
-			/>
-		)
-	}
-}
-
-const showTranslate = () => {
-	if (window.location.pathname === '/translate') {
-		return <Translate />
+const showComponent = (route, component) => {
+	if (window.location.pathname === route) {
+		return component
 	}
 }
 
@@ -69,10 +43,19 @@ function App() {
 	return (
 		<div className='ui container App'>
 			<Suspense fallback={<div>Loading...</div>}>
-				{showAccodrion()}
-				{showDropdown(selected, setSelected)}
-				{showSearch()}
-				{showTranslate()}
+				{showComponent('/', <Accordion items={items} />)}
+				{showComponent(
+					'/list',
+					<Dropdown
+						label='Select a color'
+						options={options}
+						selected={selected}
+						onSelectedChange={setSelected}
+						coloringWidget
+					/>,
+				)}
+				{showComponent('/search', <Search />)}
+				{showComponent('/translate', <Translate />)}
 			</Suspense>
 		</div>
 	)
