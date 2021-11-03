@@ -1,6 +1,9 @@
 # React Widgets
 
-## 🚀 Getting Started
+- main: https://nervous-benz-ba295c.netlify.app/
+- navigation-from-scratch : https://infallible-bhabha-bd2e59.netlify.app/
+
+## 🚀 Getting Started locally
 
 - open terminal
 - git clone `https://github.com/mazenadel19/react-widgets.git`

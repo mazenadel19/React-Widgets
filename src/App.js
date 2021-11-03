@@ -33,12 +33,6 @@ const options = [
 	{ label: 'Black', value: 'black' },
 ]
 
-// const showComponent = (route, component) => {
-// 	if (window.location.pathname === route) {
-// 		return component
-// 	}
-// }
-
 function App() {
 	const [selected, setSelected] = useState(options[0])
 
