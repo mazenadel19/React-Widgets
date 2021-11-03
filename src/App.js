@@ -1,7 +1,6 @@
 import React, { Suspense, useState } from 'react'
 import './App.css'
 import Accordion from './components/Accordion/Accordion'
-import Navbar from './components/Navbar/Navbar'
 const Dropdown = React.lazy(() => import('./components/Dropdown/Dropdown'))
 const Search = React.lazy(() => import('./components/Search/Search'))
 const Translate = React.lazy(() => import('./components/Translate/Translate'))
@@ -32,26 +31,48 @@ const options = [
 	{ label: 'Black', value: 'black' },
 ]
 
+const showAccodrion = () => {
+	if (window.location.pathname === '/') {
+		return <Accordion items={items} />
+	}
+}
+
+const showSearch = () => {
+	if (window.location.pathname === '/search') {
+		return <Search />
+	}
+}
+
+const showDropdown = (selected, setSelected) => {
+	if (window.location.pathname === '/list') {
+		return (
+			<Dropdown
+				label='Select a color'
+				options={options}
+				selected={selected}
+				onSelectedChange={setSelected}
+				coloringWidget
+			/>
+		)
+	}
+}
+
+const showTranslate = () => {
+	if (window.location.pathname === '/translate') {
+		return <Translate />
+	}
+}
+
 function App() {
-	const [active, setActive] = useState('Translate')
 	const [selected, setSelected] = useState(options[0])
 
 	return (
 		<div className='ui container App'>
-			<Navbar active={active} setActive={setActive} />
 			<Suspense fallback={<div>Loading...</div>}>
-				{active === 'Accordion' && <Accordion items={items} />}
-				{active === 'Wikipedia Search' && <Search />}
-				{active === 'Dropdown' && (
-					<Dropdown
-						label='Select a color'
-						options={options}
-						selected={selected}
-						onSelectedChange={setSelected}
-						coloringWidget
-					/>
-				)}
-				{active === 'Translate' && <Translate />}
+				{showAccodrion()}
+				{showDropdown(selected, setSelected)}
+				{showSearch()}
+				{showTranslate()}
 			</Suspense>
 		</div>
 	)
