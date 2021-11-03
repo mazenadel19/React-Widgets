@@ -1,5 +1,8 @@
 const Link = ({ href, className, children }) => {
 	const onClick = e => {
+		// adds abiltity to open link in new tab
+		if (e.metaKey || e.ctrlKey) return
+
 		e.preventDefault()
 		window.history.pushState({}, '', href)
 
