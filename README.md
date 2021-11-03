@@ -1,8 +1,4 @@
 # React Widgets
-
-- main: https://nervous-benz-ba295c.netlify.app/
-- navigation-from-scratch : https://infallible-bhabha-bd2e59.netlify.app/
-
 ## 🚀 Getting Started locally
 
 - open terminal
