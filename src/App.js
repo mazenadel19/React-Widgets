@@ -1,6 +1,7 @@
 import React, { Suspense, useState } from 'react'
 import './App.css'
 import Accordion from './components/Accordion/Accordion'
+import Header from './components/Header/Header'
 import Route from './components/Route/Route'
 const Dropdown = React.lazy(() => import('./components/Dropdown/Dropdown'))
 const Search = React.lazy(() => import('./components/Search/Search'))
@@ -43,6 +44,7 @@ function App() {
 
 	return (
 		<div className='ui container App'>
+			<Header />
 			<Suspense fallback={<div>Loading...</div>}>
 				<Route path='/'>
 					<Accordion items={items} />
