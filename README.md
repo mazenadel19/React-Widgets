@@ -3,8 +3,8 @@
 
 - open terminal
 - git clone `https://github.com/mazenadel19/react-widgets.git`
-- `npm i`
 - cd react-widgets
+- `npm i`
 - `npm start` or `yarn start`
 
 ## 🧰 Tools I've used
